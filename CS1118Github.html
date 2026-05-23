@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint / Support Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        form {
+            width: 90%;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #74ebd5;
+            outline: none;
+            box-shadow: 0 0 5px rgba(116,235,213,0.8);
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        input[type="submit"] {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background: #45a049;
+        }
+
+        input[type="reset"] {
+            background: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="reset"]:hover {
+            background: #d32f2f;
+        }
+
+        #successMsg {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+<h2>Complaint / Support Form</h2>
+
+<form id="supportForm" action="#" method="post">
+
+    <label for="name">Full Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email Address:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" id="phone" name="phone"><br><br>
+
+    <label for="type">Type of Issue:</label><br>
+    <select id="type" name="type">
+        <option value="complaint">Complaint</option>
+        <option value="technical">Technical Support</option>
+        <option value="billing">Billing Issue</option>
+        <option value="general">General Inquiry</option>
+    </select><br><br>
+
+    <label for="subject">Subject:</label><br>
+    <input type="text" id="subject" name="subject" required><br><br>
+
+    <label for="message">Describe Your Issue:</label><br>
+    <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+    <label for="file">Upload Screenshot (Optional):</label><br>
+    <input type="file" id="file" name="file"><br><br>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+
+</form>
+
+<p id="successMsg" style="color:green;"></p>
+
+<script>
+// Handle form submission
+document.getElementById("supportForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let subject = document.getElementById("subject").value.trim();
+    let message = document.getElementById("message").value.trim();
+
+    if (name === "" || email === "" || subject === "" || message === "") {
+        alert("Please fill all required fields!");
+        return;
+    }
+
+    let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!email.match(emailPattern)) {
+        alert("Enter a valid email!");
+        return;
+    }
+
+    document.getElementById("successMsg").innerText = "Your request has been submitted successfully!";
+    document.getElementById("supportForm").reset();
+});
+</script>
+
+</body>
+</html>
